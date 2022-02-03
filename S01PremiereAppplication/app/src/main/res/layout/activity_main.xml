@@ -13,10 +13,33 @@
         android:layout_height="wrap_content"
         android:text="@string/msgBonjour" />
 
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:inputType="text"/>
 
     <Button
         android:id="@+id/btnMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/msgMessage" />
+
+    <Button
+        android:id="@+id/btnTelephone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/telephoner" />
+
+    <Button
+        android:id="@+id/btnSMS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sms" />
+
+    <Button
+        android:id="@+id/btnJeu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jeu" />
 </LinearLayout>
