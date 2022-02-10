@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">S02 ConstraintLayout</string>
+    <string name="warehouse">Warehouse</string>
+    <string name="lblShort">Short</string>
+    <string name="lorem" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet lectus mauris.Integer tempus ipsum eget erat hendrerit, sed maximus arcu facilisis.Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras a hendrerit lectus, sed lobortis nisi.Nulla facilisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.Fusce porttitor ante vel risus dapibus laoreet. Quisque sit amet leo eget nisl vestibulum elementum. In lectus erat, finibus varius nunc sed, faucibus posuere ante. Curabitur consequat finibus molestie. Nullam accumsan bibendum leo id pretium. Suspendisse imperdiet enim justo, eget dictum orci pellentesque non. Vestibulum fermentum nisi sed lorem venenatis tempor. Ut mattis rutrum enim ac pharetra. Nunc convallis ac nisi at lobortis.</string>
+
+    <string name="exercice_cube">Cube</string>
+    <string name="exercice_energy">Energy</string>
+    <string name="exercice_shield">Shield</string>
+    <string name="start">Start</string>
+    <string name="training">Training</string>
+    <string name="life">Life</string>
+    <string name="revolution">Revolution</string>
+    <string name="level">Level %d</string>
+    <string name="low_energy">Low Energy</string>
+    <string name="recharge">Recharge</string>
 </resources>

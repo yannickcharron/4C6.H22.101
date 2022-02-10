@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">S02 ConstraintLayout</string>
+    <string name="warehouse">Entrepôt</string>
+    <string name="lblShort">Texte vraiment plus long</string>
+</resources>
