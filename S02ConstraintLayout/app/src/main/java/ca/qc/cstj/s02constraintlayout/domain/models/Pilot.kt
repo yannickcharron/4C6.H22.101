@@ -16,6 +16,7 @@ data class Pilot(var name: String, var life: Int, var cube: Int = 0) {
             life -= Random.nextInt(0, 2)
             shield -= Random.nextInt(0, 2)
             energy -= 1
+            cube += Random.nextInt(0, 2)
         }
     }
 
@@ -26,6 +27,7 @@ data class Pilot(var name: String, var life: Int, var cube: Int = 0) {
     fun recharge() {
         //TODO: Add microtransaction
         energy = 10
+        life = 10
     }
 
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ca.qc.cstj.s02constraintlayout.databinding.ActivityPilotBinding
 import ca.qc.cstj.s02constraintlayout.domain.models.Pilot
+import com.google.android.material.snackbar.Snackbar
 
 class PilotActivity : AppCompatActivity() {
 
@@ -25,7 +26,11 @@ class PilotActivity : AppCompatActivity() {
                 _pilot.fly(binding.sldRevolution.value.toInt(), binding.swtTraining.isChecked)
                 refreshUI()
             } else {
-                //TODO: SNACKBAR
+                Snackbar.make(binding.root, getString(R.string.lowResource), Snackbar.LENGTH_INDEFINITE)
+                    .setAction(getString(R.string.recharge)) {
+                        _pilot.recharge()
+                        refreshUI()
+                    }.show()
             }
         }
 
@@ -35,7 +40,7 @@ class PilotActivity : AppCompatActivity() {
 
         with(binding) {
             txvPilotName.text = _pilot.name
-            txvLevel.text = _pilot.level.toString()
+            txvLevel.text = getString(R.string.level, _pilot.level)
             txvCube.text = _pilot.cube.toString()
             txvEnergy.text = _pilot.energy.toString()
             txvShield.text = _pilot.shield.toString()
