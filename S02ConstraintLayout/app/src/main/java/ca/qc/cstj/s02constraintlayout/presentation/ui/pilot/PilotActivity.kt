@@ -28,6 +28,7 @@ class PilotActivity : AppCompatActivity() {
         binding = ActivityPilotBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Observe = Je veux recevoir les notifications quand le pilot est modifié
         viewModel.pilot.observe(this) {
             with(binding) {
                 txvPilotName.text = it.name
@@ -39,10 +40,22 @@ class PilotActivity : AppCompatActivity() {
             }
         }
 
-
-        //refreshUI()
+        viewModel.error.observe(this) {
+            Snackbar.make(binding.root, getString(R.string.lowResource), Snackbar.LENGTH_INDEFINITE)
+                .setAction(getString(R.string.recharge)) {
+                    viewModel.recharge()
+                }.show()
+        }
 
         binding.btnStart?.setOnClickListener {
+            viewModel.fly(binding.sldRevolution.value.toInt(), binding.swtTraining.isChecked)
+        }
+
+    }
+
+
+}
+
 //            if(_pilot.canFly()) {
 //                binding.btnStart?.isEnabled = false
 //                _pilot.fly(binding.sldRevolution.value.toInt(), binding.swtTraining.isChecked)
@@ -83,9 +96,6 @@ class PilotActivity : AppCompatActivity() {
 //                        refreshUI()
 //                    }.show()
 //            }
-        }
-
-    }
 
 //    private fun refreshUI() {
 //
@@ -98,4 +108,3 @@ class PilotActivity : AppCompatActivity() {
 //            txvLife.text = _pilot.life.toString()
 //        }
 //    }
-}
