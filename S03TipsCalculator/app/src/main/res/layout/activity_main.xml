@@ -94,7 +94,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Montant avant taxes" />
+            android:hint="Montant avant taxes"
+            android:inputType="numberDecimal"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -112,7 +113,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pourcentage pourboire" />
+            android:hint="Pourcentage pourboire"
+            android:inputType="numberDecimal"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
