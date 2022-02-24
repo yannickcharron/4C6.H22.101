@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cstj.s04recyclerview.R
+import ca.qc.cstj.s04recyclerview.core.loadFromResource
 import ca.qc.cstj.s04recyclerview.databinding.ItemPlanetBinding
 import ca.qc.cstj.s04recyclerview.domain.models.Planet
 
-class PlanetRecyclerViewAdapter(val planets: List<Planet>)
+class PlanetRecyclerViewAdapter(var planets: List<Planet>)
     : RecyclerView.Adapter<PlanetRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,6 +32,9 @@ class PlanetRecyclerViewAdapter(val planets: List<Planet>)
         fun bind(planet: Planet) {
             binding.txvPlanetName.text = planet.name
             binding.txvPlanetTemperature.text = planet.temperature.toString()
+
+            binding.imvPlanet.loadFromResource("planet${planet.image}")
+
         }
 
     }
