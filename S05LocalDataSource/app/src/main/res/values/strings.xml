@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">S05 LocalDataSource</string>
+    <string name="first_name">Prénom</string>
+    <string name="last_name">Nom</string>
+    <string name="save">Enregistrer</string>
+    <string name="online">En ligne</string>
+    <string name="open">Ouvrir</string>
 </resources>
