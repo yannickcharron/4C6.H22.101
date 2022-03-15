@@ -1,8 +1,6 @@
 package ca.qc.cstj.s05localdatasource.data.repositories
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import ca.qc.cstj.s05localdatasource.domain.models.Contact
 import kotlinx.coroutines.flow.Flow
 
@@ -13,10 +11,19 @@ interface ContactRepository {
     fun retrieveAll(): Flow<List<Contact>>
 
     @Insert
-    fun create(contacts: List<Contact>)
+    suspend fun create(contacts: List<Contact>)
 
     @Insert
     suspend fun create(contact: Contact)
+
+    @Delete
+    suspend fun delete(contact: Contact)
+
+    @Update
+    suspend fun update(contact: Contact)
+
+    @Query("DELETE FROM contacts")
+    suspend fun deleteAll()
 
 }
 
