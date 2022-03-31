@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import ca.qc.cstj.s06remotedatasource.core.LoadingResource
 import ca.qc.cstj.s06remotedatasource.core.Resource
 import ca.qc.cstj.s06remotedatasource.data.repositories.FuelPlanetRepository
 import ca.qc.cstj.s06remotedatasource.data.repositories.MemoryPlanetRepository
@@ -18,9 +19,22 @@ class PlanetListViewModel : ViewModel() {
     private val _planets = MutableLiveData<Resource<List<Planet>>>()
     val planets : LiveData<Resource<List<Planet>>> get() = _planets
 
+    //Dans une vraie application seulement une variable pour les planètes (L19-20 ou L23-24)
+    private val _planetsLoading = MutableLiveData<LoadingResource<List<Planet>>>()
+    val planetsLoading : LiveData<LoadingResource<List<Planet>>> get() = _planetsLoading
+
     init {
         viewModelScope.launch {
-            _planets.value = planetRepository.retrieveAll()
+            // Retrouver les planètes sans mise à jour
+            //_planets.value = planetRepository.retrieveAll()
+
+//            planetRepository.retrieveAllWithUpdate().collect {
+//                _planets.value = it
+//            }
+
+            planetRepository.retrieveAllWithLoading().collect {
+                _planetsLoading.value = it
+            }
         }
     }
 
