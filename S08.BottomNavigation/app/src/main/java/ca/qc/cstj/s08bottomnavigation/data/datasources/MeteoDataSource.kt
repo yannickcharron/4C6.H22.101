@@ -31,7 +31,8 @@ class MeteoDataSource {
                             meteoDTO.weather[0].main,
                             meteoDTO.coord.lat,
                             meteoDTO.coord.lon,
-                            meteoDTO.dt)
+                            meteoDTO.dt,
+                            meteoDTO.timezone)
 
                 }
                 is Result.Failure -> {
