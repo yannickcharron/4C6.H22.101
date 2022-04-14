@@ -15,6 +15,9 @@
             app:destination="@id/mapsActivity"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_navigation_search_to_mapsActivity2"
+            app:destination="@id/mapsActivity" />
     </fragment>
 
     <fragment
@@ -34,10 +37,7 @@
         android:label="activity_maps"
         tools:layout="@layout/activity_maps" >
         <argument
-            android:name="latitude"
-            app:argType="float" />
-        <argument
-            android:name="longitude"
-            app:argType="float" />
+            android:name="location"
+            app:argType="com.google.android.gms.maps.model.LatLng" />
     </activity>
 </navigation>

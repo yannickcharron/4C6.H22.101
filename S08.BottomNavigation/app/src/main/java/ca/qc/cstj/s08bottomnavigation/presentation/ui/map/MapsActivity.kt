@@ -1,17 +1,24 @@
 package ca.qc.cstj.s08bottomnavigation.presentation.ui.map
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.navArgs
 import ca.qc.cstj.s08bottomnavigation.R
 import ca.qc.cstj.s08bottomnavigation.databinding.ActivityMapsBinding
+import com.fondesa.kpermissions.allDenied
+import com.fondesa.kpermissions.allGranted
+import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.MarkerOptions
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -20,11 +27,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private val args: MapsActivityArgs by navArgs()
 
+    private val locationPermissionRequest by lazy {
+        permissionsBuilder(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ).build()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        locationPermissionRequest.send()
+        if(locationPermissionRequest.checkStatus().allDenied()) {
+            Toast.makeText(this, "Permission non accordée", Toast.LENGTH_LONG).show()
+            finish()
+        }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -41,16 +61,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        val meteoLocation = LatLng(args.latitude.toDouble(),args.longitude.toDouble())
+        mMap.isTrafficEnabled = false
+
+        if(locationPermissionRequest.checkStatus().allGranted()) {
+            @SuppressLint("MissingPermission")
+            mMap.isMyLocationEnabled = true
+        } else {
+            locationPermissionRequest.send()
+        }
+
+        //val meteoLocation = LatLng(args.latitude.toDouble(),args.longitude.toDouble())
         val meteoMarkerOptions = MarkerOptions()
-            .position(meteoLocation)
+            .position(args.location)
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
 
         mMap.addMarker(meteoMarkerOptions)
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(meteoLocation))
+
+        val cameraOptions = CameraPosition.Builder()
+            .target(args.location).zoom(12f).build()
+
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraOptions))
 
         // Add a marker in Sydney and move the camera
         //val sydney = LatLng(-34.0, 151.0)

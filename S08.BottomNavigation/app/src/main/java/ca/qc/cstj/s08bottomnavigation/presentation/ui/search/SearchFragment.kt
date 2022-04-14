@@ -72,7 +72,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
 
         binding.fabLocation.setOnClickListener {
-            val action = SearchFragmentDirections.actionNavigationSearchToMapsActivity(location!!.latitude.toFloat(), location!!.longitude.toFloat())
+            val action = SearchFragmentDirections
+                .actionNavigationSearchToMapsActivity(location!!)
             findNavController().navigate(action)
         }
 
