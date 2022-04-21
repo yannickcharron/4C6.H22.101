@@ -7,9 +7,9 @@ import ca.qc.cstj.s09navigationdrawer.databinding.ItemPlanetBinding
 import ca.qc.cstj.s09navigationdrawer.domain.models.Planet
 import com.bumptech.glide.Glide
 
-class PlanetRecyclerViewAdapter(
-    var planets: List<Planet> = listOf(),
-    private val onPlanetClick: (Planet) -> Unit) : RecyclerView.Adapter<PlanetRecyclerViewAdapter.ViewHolder>() {
+class PlanetRecyclerViewAdapter(var planets: List<Planet> = listOf(),
+                                private val onRecyclerViewPlanetClick: (Planet) -> Unit)
+: RecyclerView.Adapter<PlanetRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanetRecyclerViewAdapter.ViewHolder {
         return ViewHolder(ItemPlanetBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -20,7 +20,7 @@ class PlanetRecyclerViewAdapter(
         holder.bind(planet)
 
         holder.itemView.setOnClickListener {
-            onPlanetClick(planet)
+            onRecyclerViewPlanetClick(planet)
         }
     }
 

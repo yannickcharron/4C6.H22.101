@@ -1,11 +1,13 @@
 package ca.qc.cstj.s09navigationdrawer.presentation.ui.planet
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import ca.qc.cstj.s09navigationdrawer.R
 import ca.qc.cstj.s09navigationdrawer.core.LoadingResource
@@ -59,7 +61,10 @@ class PlanetListFragment : Fragment(R.layout.fragment_list_planets) {
     }
 
     private fun onRecyclerViewPlanetClick(planet: Planet) {
-        //TODO:
+        //Log.d("ClickPlanet", planet.name)
+        val action = PlanetListFragmentDirections.actionNavListPlanetToNavPlanet(planet.href)
+        findNavController().navigate(action)
+
     }
 
 
